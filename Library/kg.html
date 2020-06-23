@@ -1,0 +1,293 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="Python 3.7" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Knowledge Graph Documentation &mdash; Knowledge Base 1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Data Collection &amp; Preprocessing Documentation" href="preprocessing.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Knowledge Base
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Knowledge Base Setup and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preprocessing.html">Data Collection &amp; Preprocessing Documentation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Knowledge Graph Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-knowldgeB.scierc_format">SCiERC Evaluation Data Formatting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-knowldgeB.build_kg">Building the Knowledge Graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-knowldgeB.kg_vis">D3 Knowledge Graph Visualization</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Knowledge Base</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Knowledge Graph Documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/kg.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="knowledge-graph-documentation">
+<h1>Knowledge Graph Documentation<a class="headerlink" href="#knowledge-graph-documentation" title="Permalink to this headline">¶</a></h1>
+<p>On this page, lower-level knowledge graph construction functions are documented.</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="module-knowldgeB.scierc_format">
+<span id="scierc-evaluation-data-formatting"></span><h2>SCiERC Evaluation Data Formatting<a class="headerlink" href="#module-knowldgeB.scierc_format" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="knowldgeB.scierc_format.format_scierc">
+<code class="sig-prename descclassname">knowldgeB.scierc_format.</code><code class="sig-name descname">format_scierc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataDir</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.scierc_format.format_scierc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Formats .txt files (corpus) in a directory to SCIERC data format, which is readable by SpERT for evaluation.</p>
+<p>Arguments: dataDir - directory containing the text files</p>
+<p>Returns: Nothing. Side effect is a data.json file that represents the data directory files as SCIERC dataset format.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-knowldgeB.build_kg">
+<span id="building-the-knowledge-graph"></span><h2>Building the Knowledge Graph<a class="headerlink" href="#module-knowldgeB.build_kg" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="knowldgeB.build_kg.build_kg">
+<code class="sig-prename descclassname">knowldgeB.build_kg.</code><code class="sig-name descname">build_kg</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataDir</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.build_kg.build_kg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parameters:
+- dataDir --&gt; String indicating path of data, should be json file</p>
+<p>Returns:
+- JSON object</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.build_kg.get_span">
+<code class="sig-prename descclassname">knowldgeB.build_kg.</code><code class="sig-name descname">get_span</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start</span></em>, <em class="sig-param"><span class="n">end</span></em>, <em class="sig-param"><span class="n">tok_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.build_kg.get_span" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description: Gets the span in string form from output JSON data of SpERT.</p>
+<p>Parameters:
+- start --&gt; int, start index of span
+- end --&gt; int, end index of span
+- tok_list --&gt; token list</p>
+<p>Returns:
+- String representation of span</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.build_kg.valid_entity">
+<code class="sig-prename descclassname">knowldgeB.build_kg.</code><code class="sig-name descname">valid_entity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">s</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.build_kg.valid_entity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description: Determines if a string entity is valid (e.g. starts with valid characters).</p>
+<p>Parameters:
+- s --&gt; string representing an entity</p>
+<p>Returns:
+- Boolean --&gt; valid or not</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-knowldgeB.kg_vis">
+<span id="d3-knowledge-graph-visualization"></span><h2>D3 Knowledge Graph Visualization<a class="headerlink" href="#module-knowldgeB.kg_vis" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="knowldgeB.kg_vis.copy_data">
+<code class="sig-prename descclassname">knowldgeB.kg_vis.</code><code class="sig-name descname">copy_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_path</span></em>, <em class="sig-param"><span class="n">http_directory</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.kg_vis.copy_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copies the data from the processing directory to the HTTP visualization directory. Checks whether the data file exists and then checks if it is a valid JSON file.</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>data_path - the complete path to the data file, including the filename itself
+http_directory - the directory folder the data is copied to, not including the filename itself</p>
+</dd>
+<dt>Returns:</dt><dd><p>Nothing, side effect is file being copied.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.kg_vis.launch_kg_vis">
+<code class="sig-prename descclassname">knowldgeB.kg_vis.</code><code class="sig-name descname">launch_kg_vis</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">directory</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.kg_vis.launch_kg_vis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launches an HTTP server locally in order to visualize the knowledge graph data.</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>directory - Directory folder containing index.html</p>
+</dd>
+<dt>Returns:</dt><dd><p>Nothing. Should launch the visualization</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="preprocessing.html" class="btn btn-neutral float-left" title="Data Collection &amp; Preprocessing Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Laura Zheng, Arif Albayrak, William Teng
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

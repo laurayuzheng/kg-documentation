@@ -1,0 +1,618 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="Python 3.7" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Data Collection &amp; Preprocessing Documentation &mdash; Knowledge Base 1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Knowledge Graph Documentation" href="kg.html" />
+    <link rel="prev" title="Knowledge Base Setup and Usage" href="../usage.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Knowledge Base
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Knowledge Base Setup and Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data Collection &amp; Preprocessing Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-scraping.arXiv_scraper">arXiv Scraping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-knowldgeB.cermine2json">JSON Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-knowldgeB.make_corpus">Corpus Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-knowldgeB.corpus_analysis">Corpus Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="kg.html">Knowledge Graph Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Knowledge Base</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Data Collection &amp; Preprocessing Documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/preprocessing.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="data-collection-preprocessing-documentation">
+<h1>Data Collection &amp; Preprocessing Documentation<a class="headerlink" href="#data-collection-preprocessing-documentation" title="Permalink to this headline">¶</a></h1>
+<p>On this page, lower-level data collection and preprocessing functions are documented.</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="module-scraping.arXiv_scraper">
+<span id="arxiv-scraping"></span><h2>arXiv Scraping<a class="headerlink" href="#module-scraping.arXiv_scraper" title="Permalink to this headline">¶</a></h2>
+<p>This file bulk downloads from arXiv in two different formats: PDF and XML. 
+A query is made to arXiv to retrieve metadata on related publications to keywords. 
+This code can directly download related pdfs to a folder in the current directory or just retrieve the XML metadata.</p>
+<p>Created by: Laura Zheng 
+Date: Feb 2020</p>
+<dl class="py function">
+<dt id="scraping.arXiv_scraper.build_query_list">
+<code class="sig-prename descclassname">scraping.arXiv_scraper.</code><code class="sig-name descname">build_query_list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">keywords</span></em>, <em class="sig-param"><span class="n">conjunction</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">max_results</span><span class="o">=</span><span class="default_value">100</span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraping.arXiv_scraper.build_query_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+* uses build_query_url to create a list of query urls, with different combinations of keywords
+* this bulk download implementation is resistant to duplicates because of the way files are named</p>
+<p>Parameters:
+* keywords --&gt; list of keywords to include in search query
+* conjunction --&gt;</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>default is 0, which is AND</p></li>
+<li><p>1 or anything nonzero would be OR</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>max_results --&gt; default is 100. maximum number of publications retrieved during query</p></li>
+</ul>
+<p>Returns:
+* urls --&gt; returns a list of query URLs constructed from the keywords given</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="scraping.arXiv_scraper.build_query_url">
+<code class="sig-prename descclassname">scraping.arXiv_scraper.</code><code class="sig-name descname">build_query_url</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">keywords</span></em>, <em class="sig-param"><span class="n">conjunction</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">max_results</span><span class="o">=</span><span class="default_value">100</span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraping.arXiv_scraper.build_query_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+* makes a query to arXiv servers based on keywords and characteristics</p>
+<p>Parameters:
+* keywords --&gt; list of keywords to include in search query
+* conjunction --&gt;</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>default is 0, which is AND</p></li>
+<li><p>1 or anything nonzero would be OR</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>max_results --&gt; default is 100. maximum number of publications retrieved during query</p></li>
+</ul>
+<p>Returns:
+* url --&gt; the query URL that was built from the keywords</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="scraping.arXiv_scraper.download_pdfs">
+<code class="sig-prename descclassname">scraping.arXiv_scraper.</code><code class="sig-name descname">download_pdfs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_dir</span></em>, <em class="sig-param"><span class="n">urls</span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraping.arXiv_scraper.download_pdfs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+* downloads publications from arXiv based on earth science and machine learning keywords.</p>
+<p>Parameters:
+* data_dir --&gt; Path object pointing to data directory
+* urls --&gt; list of arXiv query URLs</p>
+<p>Returns:
+* nothing
+* side effect is downloaded publications to /papers/ folder under the current directory</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="scraping.arXiv_scraper.download_xml">
+<code class="sig-prename descclassname">scraping.arXiv_scraper.</code><code class="sig-name descname">download_xml</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_dir</span></em>, <em class="sig-param"><span class="n">urls</span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraping.arXiv_scraper.download_xml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+* downloads XML file of metadata from arXiv based on earth science and machine learning keywords.</p>
+<p>Parameters:
+* urls --&gt; list of arXiv query URLs</p>
+<p>Returns:
+* nothing
+* side effect is downloaded XML files to /arXiv-xml/ folder under the current directory</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-knowldgeB.cermine2json">
+<span id="json-conversion"></span><h2>JSON Conversion<a class="headerlink" href="#module-knowldgeB.cermine2json" title="Permalink to this headline">¶</a></h2>
+<p>This file handles parsing of CERMINE XML output documents. This does not
+handle the parsing of arXiv query output documents. Each load_pub run is
+supposed to handle only one publication at a time.</p>
+<dl class="py function">
+<dt id="knowldgeB.cermine2json.get_abstract">
+<code class="sig-prename descclassname">knowldgeB.cermine2json.</code><code class="sig-name descname">get_abstract</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">soup</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.cermine2json.get_abstract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+- parses contents of xml file for the abstract</p>
+<p>Parameters:
+- soup --&gt; Beautifulsoup object of XML contents</p>
+<p>Returns:
+- string, abstract text</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.cermine2json.get_authors">
+<code class="sig-prename descclassname">knowldgeB.cermine2json.</code><code class="sig-name descname">get_authors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">soup</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.cermine2json.get_authors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+- parses contents of xml file for the authors</p>
+<p>Parameters:
+- soup --&gt; Beautifulsoup object of XML contents</p>
+<p>Returns:
+- list of strings, author names</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.cermine2json.get_body_text">
+<code class="sig-prename descclassname">knowldgeB.cermine2json.</code><code class="sig-name descname">get_body_text</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">soup</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.cermine2json.get_body_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+- parses contents of xml file for the references</p>
+<p>Parameters:
+- soup --&gt; Beautifulsoup object of XML contents</p>
+<p>Returns:
+- Publication (obj) list of related works</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.cermine2json.get_emails">
+<code class="sig-prename descclassname">knowldgeB.cermine2json.</code><code class="sig-name descname">get_emails</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">soup</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.cermine2json.get_emails" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+- parses contents of xml file for the emails</p>
+<p>Parameters:
+- soup --&gt; Beautifulsoup object of XML contents</p>
+<p>Returns:
+- list of strings, author emails</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.cermine2json.get_institutions">
+<code class="sig-prename descclassname">knowldgeB.cermine2json.</code><code class="sig-name descname">get_institutions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">soup</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.cermine2json.get_institutions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+- parses contents of xml file for the institutions of authors</p>
+<p>Parameters:
+- soup --&gt; Beautifulsoup object of XML contents</p>
+<p>Returns:
+- string list, institutions text</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.cermine2json.get_refs">
+<code class="sig-prename descclassname">knowldgeB.cermine2json.</code><code class="sig-name descname">get_refs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">soup</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.cermine2json.get_refs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+- parses contents of xml file for the references</p>
+<p>Parameters:
+- soup --&gt; Beautifulsoup object of XML contents</p>
+<p>Returns:
+- Publication (obj) list of related works</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.cermine2json.get_title">
+<code class="sig-prename descclassname">knowldgeB.cermine2json.</code><code class="sig-name descname">get_title</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">soup</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.cermine2json.get_title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+- parses contents of xml file for the title</p>
+<p>Parameters:
+- soup --&gt; Beautifulsoup object of XML contents</p>
+<p>Returns:
+- string, title text</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.cermine2json.insert_json_to_db">
+<code class="sig-prename descclassname">knowldgeB.cermine2json.</code><code class="sig-name descname">insert_json_to_db</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">json_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.cermine2json.insert_json_to_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+- adds publications to MongoDB from a JSON file
+- mongo must be running on port
+- <a href="#id1"><span class="problematic" id="id2">*</span></a>currently default collection is arXiv, add more options in definition later</p>
+<p>Parameters:
+- json_path --&gt; absolute or relative path to json file</p>
+<p>Returns:
+- not sure.. None? should have a side effect</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.cermine2json.insert_pubs_to_db">
+<code class="sig-prename descclassname">knowldgeB.cermine2json.</code><code class="sig-name descname">insert_pubs_to_db</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pubs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.cermine2json.insert_pubs_to_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+- adds publications to MongoDB from a Publication list
+- mongo must be running on port
+- <a href="#id3"><span class="problematic" id="id4">*</span></a>currently default collection is arXiv, add more options in definition later</p>
+<p>Parameters:
+- pubs --&gt; list of Publciation objects</p>
+<p>Returns:
+- not sure.. None? should have a side effect</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.cermine2json.load_pubs">
+<code class="sig-prename descclassname">knowldgeB.cermine2json.</code><code class="sig-name descname">load_pubs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">json_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.cermine2json.load_pubs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+- load pub list from JSON file</p>
+<p>Parameters:
+- json_path --&gt; absolute or relative path to json file</p>
+<p>Returns:
+- pubs --&gt; JSON object, essentially same as Pub list</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.cermine2json.parse_all_pubs">
+<code class="sig-prename descclassname">knowldgeB.cermine2json.</code><code class="sig-name descname">parse_all_pubs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">r_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.cermine2json.parse_all_pubs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+- Loads multiple publications into Publication objects
+- stores in a B Tree data structure object</p>
+<p>Parameters:
+- r_path --&gt; (string) path of a single file</p>
+<p>Returns:
+- list of Publications --&gt; contains all Publication objects stored</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.cermine2json.parse_pub">
+<code class="sig-prename descclassname">knowldgeB.cermine2json.</code><code class="sig-name descname">parse_pub</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">f</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.cermine2json.parse_pub" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+- Parses one document's XML into a Publication object</p>
+<p>Parameters:
+- filename --&gt; (Path Object) path of a single file</p>
+<p>Returns:
+- obj --&gt; Publication object that represents the input XML file from CERMINE</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.cermine2json.save_as_json">
+<code class="sig-prename descclassname">knowldgeB.cermine2json.</code><code class="sig-name descname">save_as_json</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pub</span></em>, <em class="sig-param"><span class="n">title</span></em>, <em class="sig-param"><span class="n">write_path</span><span class="o">=</span><span class="default_value">PosixPath('.')</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.cermine2json.save_as_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+- Saves single publication to a local directory as a JSON file</p>
+<p>Parameters:
+- pubs --&gt; list of Publciation objects
+- title (OPTIONAL) --&gt; String, title of JSON file</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>DEFAULT: &quot;data&quot;</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><dl class="simple">
+<dt>write_path (OPTIONAL) --&gt; Pathlib object, path to write json data to</dt><dd><ul>
+<li><p>DEFAULT: current directory of this file</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Returns:
+- not sure.. None? should have a side effect</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.cermine2json.save_list_as_json">
+<code class="sig-prename descclassname">knowldgeB.cermine2json.</code><code class="sig-name descname">save_list_as_json</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pubs</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">'data'</span></em>, <em class="sig-param"><span class="n">write_path</span><span class="o">=</span><span class="default_value">PosixPath('.')</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.cermine2json.save_list_as_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+- Saves publication list to a local directory as a JSON file</p>
+<p>Parameters:
+- pubs --&gt; list of Publciation objects
+- title (OPTIONAL) --&gt; title of JSON file</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>DEFAULT: &quot;data&quot;</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><dl class="simple">
+<dt>write_path (OPTIONAL) --&gt; path to write json data to</dt><dd><ul>
+<li><p>DEFAULT: current directory of this file</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Returns:
+- not sure.. None? should have a side effect</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-knowldgeB.make_corpus">
+<span id="corpus-creation"></span><h2>Corpus Creation<a class="headerlink" href="#module-knowldgeB.make_corpus" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="knowldgeB.make_corpus.create_gensim_dict">
+<code class="sig-prename descclassname">knowldgeB.make_corpus.</code><code class="sig-name descname">create_gensim_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">corpus_data_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.make_corpus.create_gensim_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description: Takes path object pointing towards corpus text data, and creates a gensim dictionary and corpus object. Preprocessing is done with helper functions, which utilize SpaCy and NLTK.</p>
+<p>Parameters: corpus_data_path --&gt; Pathlib object, contains directory of corpus text data</p>
+<p>Returns: dictionary, corpus --&gt; Dictionary(), Bag-of-words Corpus</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.make_corpus.get_lemma">
+<code class="sig-prename descclassname">knowldgeB.make_corpus.</code><code class="sig-name descname">get_lemma</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">word</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.make_corpus.get_lemma" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description: Use NLTK's Wordnet to find the meanings of words, synonyms, antonyms, etc.</p>
+<p>Parameters: word --&gt; String</p>
+<p>Return: String, lemma</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.make_corpus.get_lemma2">
+<code class="sig-prename descclassname">knowldgeB.make_corpus.</code><code class="sig-name descname">get_lemma2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">word</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.make_corpus.get_lemma2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description: Use WordNetLemmatizer from NLTK to get the root word.</p>
+<p>Parameters: word --&gt; string</p>
+<p>Returns: String</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.make_corpus.load_dict_corpus">
+<code class="sig-prename descclassname">knowldgeB.make_corpus.</code><code class="sig-name descname">load_dict_corpus</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.make_corpus.load_dict_corpus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description: Loads the dictionary and corpus that was saved to the path provided.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p>path --&gt; String, directory where corpus and dictionary are located</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><ul class="simple">
+<li><p>dictionary, corpus --&gt; Dictionary() and BoW corpus</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.make_corpus.prepare_text_for_lda">
+<code class="sig-prename descclassname">knowldgeB.make_corpus.</code><code class="sig-name descname">prepare_text_for_lda</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.make_corpus.prepare_text_for_lda" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description: Tokenizes and prepares text for higher level analysis.</p>
+<p>Parameters: text --&gt; String</p>
+<p>Returns: tokens --&gt; String list</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.make_corpus.save_corpus">
+<code class="sig-prename descclassname">knowldgeB.make_corpus.</code><code class="sig-name descname">save_corpus</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path_obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.make_corpus.save_corpus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description: Creates an NLTK Plaintext Corpus based on the directory given in the arguments.</p>
+<p>Parameters:
+- path_obj (Pathlib Object) --&gt; specifies the directory the plaintext files are located, in order to construct the corpus</p>
+<p>Returns:
+- PlaintextCorpus by NLTK</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.make_corpus.save_dict_corpus">
+<code class="sig-prename descclassname">knowldgeB.make_corpus.</code><code class="sig-name descname">save_dict_corpus</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">dictionary</span></em>, <em class="sig-param"><span class="n">corpus</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.make_corpus.save_dict_corpus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description: Pickles the corpus and saves the dictionary into the specified path</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p>path --&gt; String, represents directory where to save the corpus and dictionary</p></li>
+<li><p>dictionary --&gt; the Dictionary() object</p></li>
+<li><p>corpus --&gt; the Bag-of-words corpus, list object</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns: Nothing, side effects</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.make_corpus.save_text">
+<code class="sig-prename descclassname">knowldgeB.make_corpus.</code><code class="sig-name descname">save_text</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_path</span></em>, <em class="sig-param"><span class="n">corpus_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.make_corpus.save_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+- Creates a corpus from individual JSON files that contain components of a publication.</p>
+<p>Parameters:
+- data_path (Pathlib Object) --&gt; DIRECTORY where JSON files are located
+- corpus_path (Pathlib Object) --&gt; DIRECTORY where corpus files are located</p>
+<p>Returns:
+- nothing; has side effect in corpus_path directory</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-knowldgeB.corpus_analysis">
+<span id="corpus-analysis"></span><h2>Corpus Analysis<a class="headerlink" href="#module-knowldgeB.corpus_analysis" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="knowldgeB.corpus_analysis.run_lda">
+<code class="sig-prename descclassname">knowldgeB.corpus_analysis.</code><code class="sig-name descname">run_lda</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ntopics</span></em>, <em class="sig-param"><span class="n">dictionary</span></em>, <em class="sig-param"><span class="n">corpus</span></em>, <em class="sig-param"><span class="n">save_dir</span></em>, <em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">model_name</span><span class="o">=</span><span class="default_value">'model.gensim'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.corpus_analysis.run_lda" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description: Runs LDA with a given number of topics.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p>num_topics --&gt; Integer</p></li>
+<li><p>dictionary --&gt; Dictionary object</p></li>
+<li><p>corpus --&gt; BoW corpus</p></li>
+<li><p>save --&gt; Boolean, default true</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns: LDA Model</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="knowldgeB.corpus_analysis.show_pyLDAvis">
+<code class="sig-prename descclassname">knowldgeB.corpus_analysis.</code><code class="sig-name descname">show_pyLDAvis</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">working_dir</span></em>, <em class="sig-param"><span class="n">corpus</span></em>, <em class="sig-param"><span class="n">dictionary</span></em>, <em class="sig-param"><span class="n">sort_topics</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#knowldgeB.corpus_analysis.show_pyLDAvis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description: Uses pyLDAvis to visualize LDA model</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p>lda_model_path --&gt; address of the LDA model</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><ul class="simple">
+<li><p>nothing</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="kg.html" class="btn btn-neutral float-right" title="Knowledge Graph Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../usage.html" class="btn btn-neutral float-left" title="Knowledge Base Setup and Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Laura Zheng, Arif Albayrak, William Teng
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

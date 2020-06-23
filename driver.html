@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="Python 3.7" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Driver Functions &mdash; Knowledge Base 1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Collection &amp; Preprocessing Documentation" href="library/preprocessing.html" />
+    <link rel="prev" title="Knowledge Base Setup and Usage" href="usage.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Knowledge Base
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Knowledge Base Setup and Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Driver Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library/preprocessing.html">Data Collection &amp; Preprocessing Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library/kg.html">Knowledge Graph Documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Knowledge Base</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Driver Functions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/driver.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="driver-functions">
+<h1>Driver Functions<a class="headerlink" href="#driver-functions" title="Permalink to this headline">¶</a></h1>
+<p>On this page, the functions pertaining to the driver script are explained. Each function in the driver performs a specific function in the knowledge base pipeline.</p>
+<span class="target" id="module-laura_library"></span><dl class="py function">
+<dt id="laura_library.all">
+<code class="sig-prename descclassname">laura_library.</code><code class="sig-name descname">all</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">keywords</span></em>, <em class="sig-param"><span class="n">max_results</span></em>, <em class="sig-param"><span class="n">working_dir</span></em>, <em class="sig-param"><span class="n">num_topics</span></em>, <em class="sig-param"><span class="n">JAR_loc</span></em>, <em class="sig-param"><span class="n">vis_type</span></em>, <em class="sig-param"><span class="n">spert_config</span></em>, <em class="sig-param"><span class="n">output_filename</span></em>, <em class="sig-param"><span class="n">vis_dir</span></em><span class="sig-paren">)</span><a class="headerlink" href="#laura_library.all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs all modules from start (scraping) to finish (knowledge graph)</p>
+<p>Arguments:
+keywords -- string list of keywords used to scrape for data
+max_results -- integer amount of results desired from scraping
+working_dir -- working directory of all actions
+num_topics -- number of topics to cluster for in analysis
+JAR_loc -- path to the JAR file for CERMINE
+vis_type -- string, one of three choices: wordcloud, pyldavis, scatter</p>
+<p>Returns:
+nothing, side effects in working directory passed in</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="laura_library.analyze">
+<code class="sig-prename descclassname">laura_library.</code><code class="sig-name descname">analyze</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">working_dir</span></em>, <em class="sig-param"><span class="n">num_topics</span></em><span class="sig-paren">)</span><a class="headerlink" href="#laura_library.analyze" title="Permalink to this definition">¶</a></dt>
+<dd><p>Analyzes Gensim dictionary and corpus and saves as LDA model.</p>
+<p>Arguments:
+working_dir -- working directory path
+num_topics -- number of topics LDA is given</p>
+<p>Returns:
+Nothing. Side effect is LDA model saved to working directory.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="laura_library.convert">
+<code class="sig-prename descclassname">laura_library.</code><code class="sig-name descname">convert</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">working_dir</span></em>, <em class="sig-param"><span class="n">JAR_location</span></em><span class="sig-paren">)</span><a class="headerlink" href="#laura_library.convert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses CERMINE to convert PDFs to CERMXML format.</p>
+<p>Arguments:
+working_dir -- working directory path
+JAR_location -- path to CERMINE JAR executable</p>
+<p>Returns:
+Nothing. Side effects in working_dir</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="laura_library.create">
+<code class="sig-prename descclassname">laura_library.</code><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">working_dir</span></em><span class="sig-paren">)</span><a class="headerlink" href="#laura_library.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates Gensim dictionary and corpus based on JSON files in working directory.</p>
+<p>Arguments:
+working_dir -- working directory path</p>
+<p>Returns:
+Nothing. Side effect is saved gensim dict and corpus to working_dir.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="laura_library.parse">
+<code class="sig-prename descclassname">laura_library.</code><code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">working_dir</span></em><span class="sig-paren">)</span><a class="headerlink" href="#laura_library.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses CERMXML files to dictionary (JSON) format.</p>
+<p>Arguments:
+working_dir -- working directory path</p>
+<p>Returns:
+Nothing. Side effect of JSON files in working_dir.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="laura_library.scrape">
+<code class="sig-prename descclassname">laura_library.</code><code class="sig-name descname">scrape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">keywords</span></em>, <em class="sig-param"><span class="n">max_results</span></em>, <em class="sig-param"><span class="n">working_dir</span></em><span class="sig-paren">)</span><a class="headerlink" href="#laura_library.scrape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scrapes arXiv for dataset.</p>
+<p>Arguments:
+keywords -- keyword queries to scrape dataset on
+max_results -- maximum number of results wanted (upper bound)
+working_dir -- working directory path</p>
+<p>Returns:
+Nothing. Data is collected to working_dir</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="laura_library.visualize">
+<code class="sig-prename descclassname">laura_library.</code><code class="sig-name descname">visualize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vis_type</span></em>, <em class="sig-param"><span class="n">working_dir</span></em><span class="sig-paren">)</span><a class="headerlink" href="#laura_library.visualize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Visualizes the LDA model in one of three ways: wordcloud, scatter plot, or using PyLDAVis.</p>
+<p>Arguments:
+vis_type -- &quot;wordcloud&quot;, &quot;scatter&quot;, or &quot;pyldavis&quot;
+working_dir -- working directory path, LDA model must be saved here.</p>
+<p>Returns:
+Nothing. Side effect is visualization saved to working directory.</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="library/preprocessing.html" class="btn btn-neutral float-right" title="Data Collection &amp; Preprocessing Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="usage.html" class="btn btn-neutral float-left" title="Knowledge Base Setup and Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Laura Zheng, Arif Albayrak, William Teng
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

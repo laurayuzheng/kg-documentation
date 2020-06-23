@@ -1,0 +1,54 @@
+Knowledge Base Setup and Usage
+==========================================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+Environment Setup
+-------------------
+
+To start setup, first navigate to the code/ directory ::
+
+   cd code
+
+Then run the following bash script ::
+
+   ./laura_setup.sh
+
+Driver Usage
+-------------
+
+The driver takes one argument with the --config flag. Run the following in the code/ directory from above. ::
+   
+   python laura_driver.py --config [CONFIG_PATH]
+
+Configs are typically stored in the code/configs folder. Example usage with the default config is included below. ::
+
+   python laura_driver.py --config configs/default_config.ini
+
+
+Config Schema
+--------------
+
+The config is comprised of three sections: Settings, Sections, and SpERT.
+
+Settings
+^^^^^^^^^
+
+- working_dir - the directory where all data is stored to and processed
+- max_results - the maximum number of publications downloaded using the data scraper module
+- keywords - a list of keywords delimited by commas, describing the keywords used to query for publications to scrape
+- visualization - choose between wordcloud, pyldavis, and scatter
+- JAR_loc - location of CERMINE JAR file. Do not change unless familiar with CERMINE.
+- lda_num_topics - integer describing number of topics used for LDA
+- http_directory - visualization directory containing relevant visualization scripts. Do not change unless the relative path was changed.
+
+Sections
+^^^^^^^^^
+This section is used in order to run specific modules of the pipeline, or run all. Set these sections to yes/no based on which to run. If "yes" is set for "all", this setting will override individual section settings.
+
+SpERT
+^^^^^^
+spert_config - The SpERT config goes here. This is necessary for SpERT to run in the pipeline. Do not modify this path unless experienced with SpERT, or the path was changed. 
+
